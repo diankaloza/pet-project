@@ -8,8 +8,7 @@ export interface ModalProps {
 export const ModalStyle = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #a4acb0;
-  filter: opacity(0.9);
+  background-color: rgba(164, 172, 176, 0.5);
   position: absolute;
   top: 0px;
 `
