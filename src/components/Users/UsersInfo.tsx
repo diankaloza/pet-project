@@ -1,10 +1,13 @@
 import { useState } from 'react'
 
-import { TabHead, Table, Tboby, Td, Th } from './style'
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
+
+import { ButtonAdd, TabHead, Table, Tboby, Td, Th } from './style'
 
 import { UserCreate } from 'components/Modal/UserCreate'
 import { UserDelete } from 'components/Modal/UserDelete'
-import { UpDateUserModal } from 'components/Modal/UserUpdate'
+import { UpDateUserModal } from 'components/Modal/UserUpdate/UserUpdate'
+import { Content } from 'components/Tabs/style'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { I_User } from 'models/users'
 
@@ -58,7 +61,8 @@ export const UserInfo = () => {
             <Th>Age</Th>
             <Th>Location</Th>
             <th>
-              <button onClick={handleOpenUserCreateModal}>ADD NEW</button>
+              {' '}
+              <ButtonAdd onClick={handleOpenUserCreateModal}>ADD NEW</ButtonAdd>
             </th>
           </tr>
         </TabHead>
@@ -70,8 +74,30 @@ export const UserInfo = () => {
               <Td>{user.age}</Td>
               <Td>{user.locationId}</Td>
               <Td>
-                <button onClick={() => handleOpenUpdateModal(user)}>change</button>
-                <button onClick={() => handleOpenDeleteModal(user.id)}>del</button>
+                <div>
+                  <AiOutlineEdit
+                    color='black'
+                    size={28}
+                    style={{
+                      border: '1px solid black',
+                      cursor: 'pointer',
+                      borderRadius: '5px',
+                      boxShadow: '2px 2px 2px 2px black',
+                    }}
+                    onClick={() => handleOpenUpdateModal(user)}
+                  />{' '}
+                  <AiOutlineDelete
+                    color='black'
+                    size={28}
+                    style={{
+                      border: '1px solid black',
+                      cursor: 'pointer',
+                      borderRadius: '5px',
+                      boxShadow: '2px 2px 2px 2px black',
+                    }}
+                    onClick={() => handleOpenDeleteModal(user.id)}
+                  />{' '}
+                </div>
               </Td>
             </tr>
           ))}
@@ -81,6 +107,7 @@ export const UserInfo = () => {
       {userCreateModal && <UserCreate onClose={handleCloseUserCreateModal} />}
       {userDeleteModal && <UserDelete id={currentUserId} onClose={handleDeleteCloseModal} />}
       {userUpdateModal && <UpDateUserModal user={currentUser} onClose={handleCloseUpdateUser} />}
+      <div />
     </>
   )
 }

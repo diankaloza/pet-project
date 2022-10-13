@@ -1,4 +1,5 @@
 import { FooterStyle } from 'components/Footer/styles'
+import { LinkStyle } from 'components/Footer/styles'
 
 export const Footer = () => {
   return (
@@ -6,10 +7,10 @@ export const Footer = () => {
       <div>
         {' '}
         Developed by{' '}
-        <a href='https://github.com/diankaloza' target='_blank'>
+        <LinkStyle href='https://github.com/diankaloza' target='_blank'>
           {' '}
           Diana Loza
-        </a>{' '}
+        </LinkStyle>{' '}
         2022
       </div>
     </FooterStyle>

@@ -1,20 +1,41 @@
+import { AiOutlineCheck } from 'react-icons/ai'
+import { IoLogoReact } from 'react-icons/io5'
+import { SiRedux } from 'react-icons/si'
+import { SiTypescript } from 'react-icons/si'
+
 import { Tabs } from 'components/Tabs/Tabs'
+import { BodyContent, BodyTitle, List, ListTitle } from 'styles/style'
 
 export const HomePage = () => {
   return (
-    <>
+    <BodyContent>
       <div>
-        <div style={{ height: 20 }}></div>
-        <div> Simple CRUD App</div>
+        <BodyTitle> Simple CRUD App</BodyTitle>
 
-        <ul> Technologies</ul>
-        <li> React</li>
-        <li> Redux</li>
-        <li> TypeScript</li>
-        <li> Styled Components</li>
-        <li> ... </li>
+        <ListTitle> Technologies</ListTitle>
+        <List>
+          {' '}
+          <IoLogoReact size={20} color='#1451fb' /> React
+        </List>
+        <List>
+          {' '}
+          <SiRedux size={20} color='#d500f9' /> Redux
+        </List>
+        <List>
+          {' '}
+          <SiTypescript size={20} color='#00bcd4' />
+          TypeScript
+        </List>
+        <List>
+          {' '}
+          <AiOutlineCheck size={20} color='#2e7d32' /> Styled Components
+        </List>
+        <List>
+          {' '}
+          <IoLogoReact size={20} color='red' /> React Icons{' '}
+        </List>
       </div>
       <Tabs />
-    </>
+    </BodyContent>
   )
 }

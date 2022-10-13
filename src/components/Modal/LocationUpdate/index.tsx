@@ -7,33 +7,32 @@ import {
   ModalStyle,
   ModalTitle,
   ModalWindow,
-} from './UserCreate/style'
+} from '../UserCreate/style'
 
 import { useActions } from 'hooks/useActions'
-
-import { I_User, T_UserCreate } from 'models/users'
+import { I_Location } from 'models/location'
 import { Button } from 'styles/button'
 
-interface I_UserCreateProps {
+interface I_LocationProps {
   onClose: () => void
-  user: I_User
+  location: I_Location
 }
 
-export const UpDateUserModal = ({ onClose, user }: I_UserCreateProps) => {
-  const { updateUser } = useActions()
-  const [userForm, setFormUser] = useState({
-    name: user.name,
-    age: user.age,
-    locationId: user.locationId,
+export const UpdateLocationModal = ({ onClose, location }: I_LocationProps) => {
+  const { updateLocation } = useActions()
+  const [locationForm, setLocationForm] = useState<I_Location>({
+    id: location.id,
+    country: location.country,
+    city: location.city,
   })
+
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormUser((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    setLocationForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
-  const changeUserInfo = () => {
-    updateUser({ ...userForm, id: user.id })
+  const changeLocation = () => {
+    updateLocation({ ...locationForm, id: location.id })
     onClose()
   }
-
   return (
     <ModalStyle onClick={onClose}>
       <ModalWindow onClick={(event) => event.stopPropagation()}>
@@ -44,26 +43,20 @@ export const UpDateUserModal = ({ onClose, user }: I_UserCreateProps) => {
         <ModalInputArea>
           <ModalInput
             type='text'
-            name='name'
-            placeholder='Name'
-            value={userForm.name}
-            onChange={handleChangeInput}
-          />
-          <ModalInput
-            type='number'
-            placeholder='Age'
-            value={userForm.age}
-            name='age'
+            name='country'
+            placeholder='Country'
+            value={locationForm.country}
             onChange={handleChangeInput}
           />
           <ModalInput
             type='text'
-            placeholder='Location'
-            name='locationId'
-            value={userForm.locationId}
+            placeholder='City'
+            value={locationForm.city}
+            name='city'
             onChange={handleChangeInput}
           />
-          <Button width={150} onClick={changeUserInfo}>
+
+          <Button onClick={changeLocation} width={150}>
             CHANGE USER
           </Button>
         </ModalInputArea>

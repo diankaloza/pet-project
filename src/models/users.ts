@@ -2,7 +2,6 @@ export interface I_User {
   id: string
   name: string
   age: string
-  // location : string
   locationId: string
 }
 
