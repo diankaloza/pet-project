@@ -3,7 +3,7 @@ import { IoLogoReact } from 'react-icons/io5'
 import { SiRedux } from 'react-icons/si'
 import { SiTypescript } from 'react-icons/si'
 
-import { Tabs } from 'components/Tabs/Tabs'
+import { Tabs } from 'features/Tabs'
 import { BodyContent, BodyTitle, List, ListTitle } from 'styles/style'
 
 export const HomePage = () => {
@@ -19,7 +19,7 @@ export const HomePage = () => {
         </List>
         <List>
           {' '}
-          <SiRedux size={20} color='#d500f9' /> Redux
+          <SiRedux size={20} color='#d500f9' /> Redux Toolkit
         </List>
         <List>
           {' '}

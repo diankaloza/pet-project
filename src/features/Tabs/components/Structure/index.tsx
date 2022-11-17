@@ -1,4 +1,5 @@
-import { Content } from 'components/Tabs/style'
+import { Content } from './styles'
+
 import { useAppSelector } from 'hooks/useAppSelector'
 
 export const StructurePanel = () => {

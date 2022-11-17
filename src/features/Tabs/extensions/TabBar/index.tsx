@@ -1,8 +1,6 @@
-import React from 'react'
+import * as S from './styles'
 
-import { I_Tab } from './models'
-
-import { Tab, TabsStyle } from './style'
+import { I_Tab } from '../../models'
 
 interface I_TabProps {
   selectedId: string
@@ -13,13 +11,13 @@ interface I_TabProps {
 export const TabBar: React.FC<I_TabProps> = ({ selectedId, tabBar, onClick }) => {
   return (
     <div>
-      <TabsStyle>
+      <S.TabsStyle>
         {tabBar.map((tabBarItem) => (
-          <Tab key={tabBarItem.id} onClick={() => onClick(tabBarItem.id)}>
+          <S.Tab key={tabBarItem.id} onClick={() => onClick(tabBarItem.id)}>
             <div> {tabBarItem.label}</div>
-          </Tab>
+          </S.Tab>
         ))}
-      </TabsStyle>
+      </S.TabsStyle>
     </div>
   )
 }

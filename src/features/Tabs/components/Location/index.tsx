@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 
+import { ButtonAdd, TableWrapper, TabHead, Table, Tboby, Td, Th } from './styles'
+
 import { LocationCreate } from 'components/Modal/LocationCreate'
 import { LocationDelete } from 'components/Modal/LocationDelete'
 import { UpdateLocationModal } from 'components/Modal/LocationUpdate'
-import { ButtonAdd, TabHead, Table, Tboby, Td, Th } from 'components/Users/style'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { I_Location } from 'models/location'
 
@@ -36,7 +37,7 @@ export const LocationInfo = () => {
   const handleCloseCreateModal = () => {
     setLocationCreateModal(false)
   }
-  const handleOpenUpdateModal = (location: I_Location) => {
+  const handleOpenUpdateModal = (location: I_Location) => () => {
     setCurrentLocation(location)
     setLocationUpdateModal(true)
   }
@@ -45,7 +46,7 @@ export const LocationInfo = () => {
     setLocationUpdateModal(false)
   }
   return (
-    <div>
+    <TableWrapper>
       <Table>
         <TabHead>
           <tr>
@@ -75,6 +76,7 @@ export const LocationInfo = () => {
                       borderRadius: '5px',
                       boxShadow: '2px 2px 2px 2px black',
                     }}
+                    onClick={handleOpenUpdateModal(location)}
                   />{' '}
                   <AiOutlineDelete
                     color='black'
@@ -100,6 +102,6 @@ export const LocationInfo = () => {
       {locationUpdateModal && (
         <UpdateLocationModal onClose={handleCloseUpdateModal} location={currentLocation} />
       )}
-    </div>
+    </TableWrapper>
   )
 }

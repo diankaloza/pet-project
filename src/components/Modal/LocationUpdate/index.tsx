@@ -1,13 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 
-import {
-  Exit,
-  ModalInput,
-  ModalInputArea,
-  ModalStyle,
-  ModalTitle,
-  ModalWindow,
-} from '../UserCreate/style'
+import * as S from '../UserCreate/style'
 
 import { useActions } from 'hooks/useActions'
 import { I_Location } from 'models/location'
@@ -34,21 +27,21 @@ export const UpdateLocationModal = ({ onClose, location }: I_LocationProps) => {
     onClose()
   }
   return (
-    <ModalStyle onClick={onClose}>
-      <ModalWindow onClick={(event) => event.stopPropagation()}>
-        <ModalTitle display='flex'>
+    <S.ModalStyle onClick={onClose}>
+      <S.ModalWindow onClick={(event) => event.stopPropagation()}>
+        <S.ModalTitle display='flex'>
           <div> What do you want to change?</div>
-          <Exit onClick={onClose}>X</Exit>
-        </ModalTitle>
-        <ModalInputArea>
-          <ModalInput
+          <S.Exit onClick={onClose}>X</S.Exit>
+        </S.ModalTitle>
+        <S.ModalInputArea>
+          <S.ModalInput
             type='text'
             name='country'
             placeholder='Country'
             value={locationForm.country}
             onChange={handleChangeInput}
           />
-          <ModalInput
+          <S.ModalInput
             type='text'
             placeholder='City'
             value={locationForm.city}
@@ -59,8 +52,8 @@ export const UpdateLocationModal = ({ onClose, location }: I_LocationProps) => {
           <Button onClick={changeLocation} width={150}>
             CHANGE USER
           </Button>
-        </ModalInputArea>
-      </ModalWindow>
-    </ModalStyle>
+        </S.ModalInputArea>
+      </S.ModalWindow>
+    </S.ModalStyle>
   )
 }

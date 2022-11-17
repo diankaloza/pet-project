@@ -1,12 +1,8 @@
 import { useState } from 'react'
 
-import { TabBar } from './index'
-
+import { LocationInfo, StructurePanel, UserInfo } from './components'
 import { tabs } from './data'
-
-import { LocationInfo } from 'components/Location/LocationInfo'
-import { StructurePanel } from 'components/Structure'
-import { UserInfo } from 'components/Users/UsersInfo'
+import { TabBar } from './extensions/TabBar'
 
 export const Tabs = () => {
   const [selectedId, setSelectedId] = useState(tabs[0].id)

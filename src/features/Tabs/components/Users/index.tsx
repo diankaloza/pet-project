@@ -2,17 +2,18 @@ import { useState } from 'react'
 
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 
-import { ButtonAdd, TabHead, Table, Tboby, Td, Th } from './style'
+import { ButtonAdd, TabHead, Table, TableWrapper, Tboby, Td, Th } from './styles'
 
 import { UserCreate } from 'components/Modal/UserCreate'
 import { UserDelete } from 'components/Modal/UserDelete'
-import { UpDateUserModal } from 'components/Modal/UserUpdate/UserUpdate'
-import { Content } from 'components/Tabs/style'
+import { UpDateUserModal } from 'components/Modal/UserUpdate/index'
+
 import { useAppSelector } from 'hooks/useAppSelector'
 import { I_User } from 'models/users'
 
 export const UserInfo = () => {
   const { users } = useAppSelector((state) => state.users)
+  const { locations } = useAppSelector((state) => state.locations)
 
   const [userCreateModal, setUserCreateModal] = useState(false)
   const [userDeleteModal, setUserDeleteModal] = useState(false)
@@ -51,8 +52,13 @@ export const UserInfo = () => {
     setUserUpDateModal(false)
   }
 
+  const getUserLocation = (locationId: string) => {
+    const location = locations.find((location) => location.id === locationId)
+    return location ? `${location.country}, ${location.city}` : '-'
+  }
+
   return (
-    <>
+    <TableWrapper>
       <Table>
         <TabHead>
           <tr>
@@ -72,7 +78,7 @@ export const UserInfo = () => {
               <Td>{ind + 1}</Td>
               <Td>{user.name}</Td>
               <Td>{user.age}</Td>
-              <Td>{user.locationId}</Td>
+              <Td>{getUserLocation(user.locationId)}</Td>
               <Td>
                 <div>
                   <AiOutlineEdit
@@ -81,6 +87,7 @@ export const UserInfo = () => {
                     style={{
                       border: '1px solid black',
                       cursor: 'pointer',
+
                       borderRadius: '5px',
                       boxShadow: '2px 2px 2px 2px black',
                     }}
@@ -107,7 +114,6 @@ export const UserInfo = () => {
       {userCreateModal && <UserCreate onClose={handleCloseUserCreateModal} />}
       {userDeleteModal && <UserDelete id={currentUserId} onClose={handleDeleteCloseModal} />}
       {userUpdateModal && <UpDateUserModal user={currentUser} onClose={handleCloseUpdateUser} />}
-      <div />
-    </>
+    </TableWrapper>
   )
 }

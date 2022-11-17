@@ -1,13 +1,18 @@
 import styled from 'styled-components'
 
-export const Table = styled.table`
+export const TableBase = styled.table`
   border-spacing: 0px;
   color: #424242;
   width: 100%;
   border: 0.5px solid black;
 `
 
-export const TabHead = styled.thead`
+export const TableWrapperBase = styled.div`
+  overflow-x: auto;
+  max-width: 100%;
+`
+
+export const TabHeadBase = styled.thead`
   background: #ada996; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #eaeaea, #dbdbdb, #f2f2f2, #ada996);
   background: linear-gradient(to right, #eaeaea, #dbdbdb, #f2f2f2, #ada996);
@@ -15,11 +20,13 @@ export const TabHead = styled.thead`
   font-weight: 800;
   text-decoration: underline;
 `
-export const Th = styled.th`
+
+export const ThBase = styled.th`
   padding: 15px 30px;
   letter-spacing: 2px;
 `
-export const Tboby = styled.tbody`
+
+export const TbobyBase = styled.tbody`
   background: #ada996; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -39,12 +46,14 @@ export const Tboby = styled.tbody`
   text-align: center;
   color: black;
 `
-export const Td = styled.td`
+
+export const TdBase = styled.td`
   padding: 20px;
 
   border-top: 0.5px solid black;
 `
-export const ButtonAdd = styled.button`
+
+export const ButtonAddBase = styled.button`
   font-weight: 600;
   color: black;
   padding: 5px;
@@ -61,5 +70,6 @@ export const ButtonAdd = styled.button`
   :active {
     background-color: white;
     box-shadow: 1px 1px 1px 1px black;
+    margin-bottom: 5px;
   }
 `

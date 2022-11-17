@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { I_Location } from 'models/location'
+
 import { locationData } from 'store/location/data'
 import { generateUserId } from 'utils/helpers/generators'
 
