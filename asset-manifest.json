@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/pet-project/static/js/main.156f008f.js",
+    "main.js": "/pet-project/static/js/main.afbd44fa.js",
     "index.html": "/pet-project/index.html",
-    "main.156f008f.js.map": "/pet-project/static/js/main.156f008f.js.map"
+    "main.afbd44fa.js.map": "/pet-project/static/js/main.afbd44fa.js.map"
   },
   "entrypoints": [
-    "static/js/main.156f008f.js"
+    "static/js/main.afbd44fa.js"
   ]
 }
