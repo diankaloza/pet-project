@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { I_UserUpdateForm } from 'components/Modal/UserUpdate/data'
+
 import { I_User, T_UserCreate } from 'models/users'
 import { userData } from 'store/users/data'
 import { generateUserId } from 'utils/helpers/generators'

@@ -68,24 +68,22 @@ export const LocationInfo = () => {
               <Td>
                 <div>
                   <AiOutlineEdit
-                    color='black'
+                    color='white'
                     size={28}
                     style={{
-                      border: '1px solid black',
                       cursor: 'pointer',
                       borderRadius: '5px',
-                      boxShadow: '2px 2px 2px 2px black',
+                      boxShadow: '0px 0px 0.5px 0.5px white',
                     }}
                     onClick={handleOpenUpdateModal(location)}
                   />{' '}
                   <AiOutlineDelete
-                    color='black'
+                    color='white'
                     size={28}
                     style={{
-                      border: '1px solid black',
                       cursor: 'pointer',
                       borderRadius: '5px',
-                      boxShadow: '2px 2px 2px 2px black',
+                      boxShadow: '0px 0px 0.5px 0.5px white',
                     }}
                     onClick={() => handleOpenDeleteModal(location.id)}
                   />{' '}

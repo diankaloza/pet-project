@@ -2,14 +2,14 @@ import { ChangeEvent, useState } from 'react'
 
 import { initialForm, I_UserCreateForm } from './data'
 
-import * as S from 'components/Modal/UserCreate/style'
+import * as S from './styles'
 
 import { Select } from 'components/Select'
 import { TextInput } from 'components/TextInput'
 import { useActions } from 'hooks/useActions'
 import { T_UserCreate } from 'models/users'
 
-import { Button } from 'styles/button'
+import * as C from 'styles/components'
 
 interface I_UserCreateProps {
   onClose: () => void
@@ -46,6 +46,7 @@ export const UserCreate = ({ onClose }: I_UserCreateProps) => {
 
     return isValid
   }
+  console.log(userForm.locationId.value)
 
   const handleCreateUser = () => {
     if (validate()) {
@@ -54,7 +55,7 @@ export const UserCreate = ({ onClose }: I_UserCreateProps) => {
         age: userForm.age.value,
         locationId: userForm.locationId.value,
       }
-      console.log(userForm.locationId.value)
+
       setUserForm(initialForm)
 
       createUser(user)
@@ -79,8 +80,8 @@ export const UserCreate = ({ onClose }: I_UserCreateProps) => {
   }
 
   return (
-    <S.ModalStyle onClick={onClose}>
-      <S.ModalWindow onClick={(event) => event.stopPropagation()}>
+    <S.ModalStyle>
+      <S.ModalWindow>
         <S.ModalTitle display='flex'>
           <div>NEW USER</div>
           <S.Exit onClick={onClose}>X</S.Exit>
@@ -93,25 +94,30 @@ export const UserCreate = ({ onClose }: I_UserCreateProps) => {
             name='name'
             value={userForm.name.value}
             onChange={handleChangeInput}
+            isError={userForm.name.error}
           />
-          {userForm.name.error ? <S.ErrorStyle>{userForm.name.error}</S.ErrorStyle> : <span></span>}
+
           <TextInput
             type='number'
             placeholder='Age'
             name='age'
             value={userForm.age.value}
             onChange={handleChangeInput}
+            isError={userForm.age.error}
           />
-          {userForm.age.error ? <S.ErrorStyle>{userForm.age.error} </S.ErrorStyle> : <span></span>}
 
-          <Select userForm={userForm} chooseLocation={(e) => chooseLocation(e)} />
-          {userForm.locationId.error && <S.ErrorStyle>{userForm.locationId.error}</S.ErrorStyle>}
+          <Select
+            isError={userForm.locationId.error}
+            userForm={userForm}
+            chooseLocation={(e) => chooseLocation(e)}
+          />
 
-          <Button width={150} onClick={handleCreateUser}>
+          <S.Button width={150} onClick={handleCreateUser}>
             ADD USER
-          </Button>
+          </S.Button>
         </S.ModalInputArea>
       </S.ModalWindow>
+      <C.Overlay onClick={onClose} />
     </S.ModalStyle>
   )
 }

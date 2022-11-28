@@ -13,7 +13,11 @@ export const TabBar: React.FC<I_TabProps> = ({ selectedId, tabBar, onClick }) =>
     <div>
       <S.TabsStyle>
         {tabBar.map((tabBarItem) => (
-          <S.Tab key={tabBarItem.id} onClick={() => onClick(tabBarItem.id)}>
+          <S.Tab
+            key={tabBarItem.id}
+            isActive={selectedId === tabBarItem.id}
+            onClick={() => onClick(tabBarItem.id)}
+          >
             <div> {tabBarItem.label}</div>
           </S.Tab>
         ))}

@@ -10,9 +10,9 @@ export const HomePage = () => {
   return (
     <BodyContent>
       <div>
-        <BodyTitle> Simple CRUD App</BodyTitle>
+        <BodyTitle>SIMPLE CRUD APP</BodyTitle>
 
-        <ListTitle> Technologies</ListTitle>
+        <ListTitle>Technologies</ListTitle>
         <List>
           {' '}
           <IoLogoReact size={20} color='#1451fb' /> React
@@ -23,8 +23,7 @@ export const HomePage = () => {
         </List>
         <List>
           {' '}
-          <SiTypescript size={20} color='#00bcd4' />
-          TypeScript
+          <SiTypescript size={20} color='#00bcd4' /> TypeScript
         </List>
         <List>
           {' '}

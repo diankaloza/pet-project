@@ -7,6 +7,11 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: "Monoton", cursive;
+    height: 100vh;
+    color: black;
+
+    background-color: #fff1f0;
+
+    font-family: 'Oswald', sans-serif;
   }
 `

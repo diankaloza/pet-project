@@ -2,12 +2,14 @@ import { ChangeEvent, useState } from 'react'
 
 import { initialFormLocation, I_LocationCreateForm } from './data'
 
-import * as S from '../UserCreate/style'
+import * as S from './styles'
 
+import { TextInput } from 'components/TextInput'
 import { useActions } from 'hooks/useActions'
 
 import { I_Location } from 'models/location'
-import { Button } from 'styles/button'
+
+import * as C from 'styles/components'
 
 interface I_LocationProps {
   onClose: () => void
@@ -60,35 +62,37 @@ export const LocationCreate = ({ onClose }: I_LocationProps) => {
   }
 
   return (
-    <S.ModalStyle onClick={onClose}>
-      <S.ModalWindow onClick={(event) => event.stopPropagation()}>
+    <S.ModalStyle>
+      <S.ModalWindow>
         <S.ModalTitle display='flex'>
           <div>NEW LOCATION</div>
           <S.Exit onClick={onClose}>X</S.Exit>
         </S.ModalTitle>
         <S.ModalInputArea>
-          <S.ModalInput
+          <TextInput
             type='text'
             placeholder='Country'
             name='country'
             value={locationForm.country.value}
             onChange={handleChangeInput}
+            isError={locationForm.country.error}
           />
-          {locationForm.country.error && <S.ErrorStyle>{locationForm.country.error}</S.ErrorStyle>}
-          <S.ModalInput
+
+          <TextInput
             type='text'
             placeholder='City'
             name='city'
             value={locationForm.city.value}
             onChange={handleChangeInput}
+            isError={locationForm.city.error}
           />
-          {locationForm.city.error && <S.ErrorStyle>{locationForm.city.error}</S.ErrorStyle>}
 
-          <Button width={150} onClick={handleCreateLocation}>
+          <S.Button width={150} onClick={handleCreateLocation}>
             ADD LOCATION
-          </Button>
+          </S.Button>
         </S.ModalInputArea>
       </S.ModalWindow>
+      <C.Overlay onClick={onClose} />
     </S.ModalStyle>
   )
 }

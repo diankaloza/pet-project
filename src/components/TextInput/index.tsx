@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react'
 
-import * as S from 'components/Modal/UserCreate/style'
+import * as S from './styles'
 
 export interface I_TextInputProps {
   type: 'text' | 'number'
@@ -8,6 +8,7 @@ export interface I_TextInputProps {
   name: string
   value: string
   onChange: ChangeEventHandler<HTMLInputElement>
+  isError: string
 }
 
 export const TextInput: React.FC<I_TextInputProps> = ({
@@ -16,6 +17,7 @@ export const TextInput: React.FC<I_TextInputProps> = ({
   name,
   value,
   onChange,
+  isError,
 }) => {
   return (
     <>
@@ -26,6 +28,7 @@ export const TextInput: React.FC<I_TextInputProps> = ({
         value={value}
         onChange={onChange}
       />
+      {isError ? <S.ErrorStyle>{isError}</S.ErrorStyle> : <S.EmptyError> </S.EmptyError>}
     </>
   )
 }

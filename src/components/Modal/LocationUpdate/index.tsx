@@ -1,10 +1,11 @@
 import { ChangeEvent, useState } from 'react'
 
-import * as S from '../UserCreate/style'
+import * as S from './styles'
 
+import { TextInput } from 'components/TextInput'
 import { useActions } from 'hooks/useActions'
-import { I_Location } from 'models/location'
-import { Button } from 'styles/button'
+import { I_Location, I_LocationUpdate } from 'models/location'
+import * as C from 'styles/components'
 
 interface I_LocationProps {
   onClose: () => void
@@ -13,47 +14,79 @@ interface I_LocationProps {
 
 export const UpdateLocationModal = ({ onClose, location }: I_LocationProps) => {
   const { updateLocation } = useActions()
-  const [locationForm, setLocationForm] = useState<I_Location>({
-    id: location.id,
-    country: location.country,
-    city: location.city,
+  const [locationForm, setLocationForm] = useState<I_LocationUpdate>({
+    country: { value: location.country, error: '' },
+    city: { value: location.city, error: '' },
   })
 
+  const validate = (): boolean => {
+    let isValid = true
+    if (locationForm.country.value.trim().length < 3) {
+      setLocationForm((prev) => ({
+        ...prev,
+        country: { ...prev.country, error: 'Country field must be contain at least 3 characters' },
+      }))
+      isValid = false
+    }
+    if (locationForm.city.value.trim().length < 2) {
+      setLocationForm((prev) => ({
+        ...prev,
+        city: { ...prev.city, error: 'City field must be contain at least 3 characters' },
+      }))
+      isValid = false
+    }
+    return isValid
+  }
+
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setLocationForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    const inputName = e.target.name as keyof I_LocationUpdate
+    console.log(inputName)
+    setLocationForm((prev) => ({
+      ...prev,
+      [inputName]: { ...prev[inputName], value: e.target.value, error: '' },
+    }))
   }
   const changeLocation = () => {
-    updateLocation({ ...locationForm, id: location.id })
-    onClose()
+    if (validate()) {
+      const changedLocation = {
+        country: locationForm.country.value,
+        city: locationForm.city.value,
+      } as I_Location
+      updateLocation({ ...changedLocation, id: location.id })
+      onClose()
+    }
   }
   return (
-    <S.ModalStyle onClick={onClose}>
-      <S.ModalWindow onClick={(event) => event.stopPropagation()}>
+    <S.ModalStyle>
+      <S.ModalWindow>
         <S.ModalTitle display='flex'>
           <div> What do you want to change?</div>
           <S.Exit onClick={onClose}>X</S.Exit>
         </S.ModalTitle>
         <S.ModalInputArea>
-          <S.ModalInput
+          <TextInput
             type='text'
             name='country'
             placeholder='Country'
-            value={locationForm.country}
+            value={locationForm.country.value}
             onChange={handleChangeInput}
+            isError={locationForm.country.error}
           />
-          <S.ModalInput
+          <TextInput
             type='text'
             placeholder='City'
-            value={locationForm.city}
+            value={locationForm.city.value}
             name='city'
             onChange={handleChangeInput}
+            isError={locationForm.city.error}
           />
 
-          <Button onClick={changeLocation} width={150}>
+          <S.Button onClick={changeLocation} width={150}>
             CHANGE USER
-          </Button>
+          </S.Button>
         </S.ModalInputArea>
       </S.ModalWindow>
+      <C.Overlay onClick={onClose} />
     </S.ModalStyle>
   )
 }

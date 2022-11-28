@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const TabsStyle = styled.div`
   margin-top: 20px;
@@ -6,23 +6,32 @@ export const TabsStyle = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #bdbdbd;
-  margin-bottom: 2px;
+  letter-spacing: 2px;
 `
-export const Tab = styled.div`
+export const Tab = styled.div<{ isActive: boolean }>`
   border-bottom: 1px solid #616161;
   border-right: 1px solid #616161;
-  box-shadow: 1px 1px 1px 1px #424242;
+  box-shadow: 0px 1px 1px 0px #424242;
   width: 100%;
-  text-align: center;
+  text-align: start;
+  padding: 5px 12px;
+  transition: background-color 0.3s linear, color 0.3s linear;
+
+  ${({ isActive }) =>
+    isActive
+      ? css`
+          background-color: #3c0e2d;
+          color: white;
+        `
+      : css`
+          background-color: transparent;
+          color: black;
+        `}
 
   cursor: pointer;
-  :hover {
-    background-color: #fafafa;
-    box-shadow: 2px 2px 2px 1px #bdbdbd;
-    color: black;
-  }
+
   :active {
-    background-color: #fafafa;
+    background-color: #3c0e2d;
+    color: white;
   }
 `
