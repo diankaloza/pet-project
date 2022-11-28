@@ -32,7 +32,7 @@ export const UserCreate = ({ onClose }: I_UserCreateProps) => {
     if (userForm.age.value.trim().length < 2) {
       setUserForm((prev) => ({
         ...prev,
-        age: { ...prev.age, error: 'Age field must contain at least 3 characters ' },
+        age: { ...prev.age, error: 'Age field must contain at least 2 characters ' },
       }))
       isValid = false
     }
@@ -55,9 +55,7 @@ export const UserCreate = ({ onClose }: I_UserCreateProps) => {
         age: userForm.age.value,
         locationId: userForm.locationId.value,
       }
-
       setUserForm(initialForm)
-
       createUser(user)
       onClose()
     }
