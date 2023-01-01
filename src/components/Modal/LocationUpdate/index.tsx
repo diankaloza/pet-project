@@ -82,7 +82,7 @@ export const UpdateLocationModal = ({ onClose, location }: I_LocationProps) => {
           />
 
           <S.Button onClick={changeLocation} width={150}>
-            CHANGE USER
+            CHANGE LOCATION
           </S.Button>
         </S.ModalInputArea>
       </S.ModalWindow>

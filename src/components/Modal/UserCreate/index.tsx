@@ -70,7 +70,6 @@ export const UserCreate = ({ onClose }: I_UserCreateProps) => {
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.name as keyof I_UserCreateForm
-    console.log(inputName)
     setUserForm((prev) => ({
       ...prev,
       [inputName]: { ...prev[inputName], value: e.target.value, error: '' },
